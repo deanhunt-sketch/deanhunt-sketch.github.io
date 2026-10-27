@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tesla auth callback</title></head>
+<body style="font-family:system-ui;padding:1.5rem;max-width:40rem">
+<h1>Tesla authorization</h1>
+<p id="msg">Reading code…</p>
+<pre id="code" style="word-break:break-all;background:#f4f4f4;padding:1rem"></pre>
+<p>Copy the code above and paste it back to Kai in chat (one time). Don’t share it elsewhere.</p>
+<script>
+const q = new URLSearchParams(location.search);
+const code = q.get('code');
+const err = q.get('error');
+const msg = document.getElementById('msg');
+const pre = document.getElementById('code');
+if (err) { msg.textContent = 'Error: ' + err + ' ' + (q.get('error_description')||''); }
+else if (code) { msg.textContent = 'Success — authorization code:'; pre.textContent = code; }
+else { msg.textContent = 'No code in URL. Finish the Tesla allow screen first.'; }
+</script>
+</body></html>
